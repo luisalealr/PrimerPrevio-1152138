@@ -15,7 +15,7 @@ import javax.servlet.http.HttpServletResponse;
 import co.primerprevio.dao.PacienteDao;
 import co.primerprevio.model.Paciente;
 
-@WebServlet("/")
+@WebServlet({"/PacienteController","/"})
 public class PacienteController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private PacienteDao pDao;
@@ -72,7 +72,6 @@ public class PacienteController extends HttpServlet {
 			throws ServletException, IOException, SQLException {
 		String nombre = request.getParameter("nombre");
 		String apellido = request.getParameter("apellido");
-		String contextura = request.getParameter("contextura");
 		String direccion = request.getParameter("direccion");
 		String documento = request.getParameter("documento");
 		String email = request.getParameter("email");
@@ -81,7 +80,7 @@ public class PacienteController extends HttpServlet {
 		BigDecimal estatura = BigDecimal.valueOf(Double.parseDouble(request.getParameter(("estatura"))));
 		Date fechanacimiento = Date.valueOf(request.getParameter("fechanacimiento"));
 		String telefono = request.getParameter("telefono");
-		Paciente paciente = new Paciente(apellido, contextura, direccion, documento, email, estatura, fechanacimiento,
+		Paciente paciente = new Paciente(apellido, direccion, documento, email, estatura, fechanacimiento,
 				genero, nombre, peso, telefono);
 		pDao.insert(paciente);
 		response.sendRedirect("list");
@@ -100,7 +99,6 @@ public class PacienteController extends HttpServlet {
 			throws ServletException, IOException, SQLException {
 		String nombre = request.getParameter("nombre");
 		String apellido = request.getParameter("apellido");
-		String contextura = request.getParameter("contextura");
 		String direccion = request.getParameter("direccion");
 		String documento = request.getParameter("documento");
 		String email = request.getParameter("email");
@@ -110,7 +108,7 @@ public class PacienteController extends HttpServlet {
 		Date fechanacimiento = Date.valueOf(request.getParameter("fechanacimiento"));
 		String telefono = request.getParameter("telefono");
 		int id = Integer.parseInt(request.getParameter("id"));
-		Paciente paciente = new Paciente(id, apellido, contextura, direccion, documento, email, estatura, fechanacimiento,
+		Paciente paciente = new Paciente(id, apellido, direccion, documento, email, estatura, fechanacimiento,
 				genero, nombre, peso, telefono);
 		pDao.update(paciente);
 		response.sendRedirect("list");

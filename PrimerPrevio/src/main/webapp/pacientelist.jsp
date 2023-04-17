@@ -30,7 +30,7 @@
 			<th>Direccion</th>
 			<th>Peso</th>
 			<th>Estatura</th>
-			<th>IMC</th>
+			
 		</tr>
 		<c:forEach var="listPacientes" items="${listPacientes}">
 			<tr>

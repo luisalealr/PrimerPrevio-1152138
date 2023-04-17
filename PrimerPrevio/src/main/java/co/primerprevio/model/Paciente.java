@@ -10,7 +10,6 @@ import lombok.NoArgsConstructor;
 import java.math.BigDecimal;
 import java.util.Date;
 
-
 /**
  * The persistent class for the paciente database table.
  * 
@@ -19,7 +18,7 @@ import java.util.Date;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-@NamedQuery(name="Paciente.findAll", query="SELECT p FROM Paciente p")
+@NamedQuery(name = "Paciente.findAll", query = "SELECT p FROM Paciente p")
 public class Paciente implements Serializable {
 	private static final long serialVersionUID = 1L;
 
@@ -28,6 +27,7 @@ public class Paciente implements Serializable {
 
 	private String apellido;
 
+	@Transient
 	private String contextura;
 
 	private String direccion;
@@ -48,12 +48,14 @@ public class Paciente implements Serializable {
 	private BigDecimal peso;
 
 	private String telefono;
+	
+	@Transient
+	private String IMC;
 
-	public Paciente(String apellido, String contextura, String direccion, String documento, String email,
-			BigDecimal estatura, Date fechanacimiento, String genero, String nombre, BigDecimal peso, String telefono) {
+	public Paciente(String apellido, String direccion, String documento, String email, BigDecimal estatura,
+			Date fechanacimiento, String genero, String nombre, BigDecimal peso, String telefono) {
 		super();
 		this.apellido = apellido;
-		this.contextura = contextura;
 		this.direccion = direccion;
 		this.documento = documento;
 		this.email = email;
@@ -64,8 +66,21 @@ public class Paciente implements Serializable {
 		this.peso = peso;
 		this.telefono = telefono;
 	}
-	
-	
 
+	public Paciente(Integer id, String apellido, String direccion, String documento, String email, BigDecimal estatura,
+			Date fechanacimiento, String genero, String nombre, BigDecimal peso, String telefono) {
+		super();
+		this.id = id;
+		this.apellido = apellido;
+		this.direccion = direccion;
+		this.documento = documento;
+		this.email = email;
+		this.estatura = estatura;
+		this.fechanacimiento = fechanacimiento;
+		this.genero = genero;
+		this.nombre = nombre;
+		this.peso = peso;
+		this.telefono = telefono;
+	}
 
 }
