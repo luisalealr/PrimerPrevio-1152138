@@ -15,7 +15,7 @@ import javax.servlet.http.HttpServletResponse;
 import co.primerprevio.dao.PacienteDao;
 import co.primerprevio.model.Paciente;
 
-@WebServlet("/PacienteController")
+@WebServlet("/")
 public class PacienteController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private PacienteDao pDao;
@@ -128,7 +128,7 @@ public class PacienteController extends HttpServlet {
 			throws ServletException, IOException, SQLException {
 		List<Paciente> listPacientes = pDao.list();
 		request.setAttribute("listPacientes", listPacientes);
-		RequestDispatcher dispatcher = request.getRequestDispatcher("estudiantelist.jsp");
+		RequestDispatcher dispatcher = request.getRequestDispatcher("pacientelist.jsp");
 		dispatcher.forward(request, response);
 	}
 
