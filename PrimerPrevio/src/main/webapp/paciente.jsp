@@ -60,7 +60,7 @@
 	</fieldset>
 
 	<fieldset class="form-group">
-		<label>Fecha de Nacimiento</label> <input type="text"
+		<label>Fecha de Nacimiento</label> <input type="date"
 			value="<c:out value='${paciente.fechanacimiento}' />"
 			class="form-control" name="fechanacimiento">
 	</fieldset>
