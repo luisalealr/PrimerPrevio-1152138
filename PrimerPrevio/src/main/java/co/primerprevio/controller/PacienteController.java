@@ -2,8 +2,10 @@ package co.primerprevio.controller;
 
 import java.io.IOException;
 import java.math.BigDecimal;
-import java.sql.Date;
+import java.util.Date;
 import java.sql.SQLException;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.List;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletConfig;
@@ -15,7 +17,7 @@ import javax.servlet.http.HttpServletResponse;
 import co.primerprevio.dao.PacienteDao;
 import co.primerprevio.model.Paciente;
 
-@WebServlet({"/PacienteController","/"})
+@WebServlet("/")
 public class PacienteController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private PacienteDao pDao;
@@ -69,7 +71,7 @@ public class PacienteController extends HttpServlet {
 	}
 
 	private void insertarUsuario(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException, SQLException {
+			throws ServletException, IOException, SQLException, ParseException {
 		String nombre = request.getParameter("nombre");
 		String apellido = request.getParameter("apellido");
 		String direccion = request.getParameter("direccion");
@@ -78,7 +80,8 @@ public class PacienteController extends HttpServlet {
 		String genero = request.getParameter("genero");
 		BigDecimal peso = BigDecimal.valueOf(Double.parseDouble(request.getParameter("peso")));
 		BigDecimal estatura = BigDecimal.valueOf(Double.parseDouble(request.getParameter(("estatura"))));
-		Date fechanacimiento = Date.valueOf(request.getParameter("fechanacimiento"));
+		SimpleDateFormat formato = new SimpleDateFormat("yyyy-MM-dd"); 
+		Date fechanacimiento = formato.parse(request.getParameter("fechanacimiento"));
 		String telefono = request.getParameter("telefono");
 		Paciente paciente = new Paciente(apellido, direccion, documento, email, estatura, fechanacimiento,
 				genero, nombre, peso, telefono);
@@ -96,7 +99,7 @@ public class PacienteController extends HttpServlet {
 	}
 
 	private void actualizarUsuario(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException, SQLException {
+			throws ServletException, IOException, SQLException, ParseException {
 		String nombre = request.getParameter("nombre");
 		String apellido = request.getParameter("apellido");
 		String direccion = request.getParameter("direccion");
@@ -105,7 +108,8 @@ public class PacienteController extends HttpServlet {
 		String genero = request.getParameter("genero");
 		BigDecimal peso = BigDecimal.valueOf(Double.parseDouble(request.getParameter("peso")));
 		BigDecimal estatura = BigDecimal.valueOf(Double.parseDouble(request.getParameter(("estatura"))));
-		Date fechanacimiento = Date.valueOf(request.getParameter("fechanacimiento"));
+		SimpleDateFormat formato = new SimpleDateFormat("yyyy-MM-dd"); 
+		Date fechanacimiento = formato.parse(request.getParameter("fechanacimiento"));
 		String telefono = request.getParameter("telefono");
 		int id = Integer.parseInt(request.getParameter("id"));
 		Paciente paciente = new Paciente(id, apellido, direccion, documento, email, estatura, fechanacimiento,
@@ -130,8 +134,10 @@ public class PacienteController extends HttpServlet {
 		dispatcher.forward(request, response);
 	}
 
-	private int getImc() {
-		return 0;
+	private int getImc(HttpServletRequest request, HttpServletResponse response) {
+		int peso = Integer.parseInt(request.getParameter("peso"));
+		int estatura = Integer.parseInt(request.getParameter("estatura"));
+		return peso/estatura;
 	}
 
 }

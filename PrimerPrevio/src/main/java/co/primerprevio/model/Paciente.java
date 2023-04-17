@@ -50,7 +50,7 @@ public class Paciente implements Serializable {
 	private String telefono;
 	
 	@Transient
-	private String IMC;
+	private Integer IMC;
 
 	public Paciente(String apellido, String direccion, String documento, String email, BigDecimal estatura,
 			Date fechanacimiento, String genero, String nombre, BigDecimal peso, String telefono) {
