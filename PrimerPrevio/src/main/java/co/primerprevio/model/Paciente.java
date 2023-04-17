@@ -49,5 +49,23 @@ public class Paciente implements Serializable {
 
 	private String telefono;
 
+	public Paciente(String apellido, String contextura, String direccion, String documento, String email,
+			BigDecimal estatura, Date fechanacimiento, String genero, String nombre, BigDecimal peso, String telefono) {
+		super();
+		this.apellido = apellido;
+		this.contextura = contextura;
+		this.direccion = direccion;
+		this.documento = documento;
+		this.email = email;
+		this.estatura = estatura;
+		this.fechanacimiento = fechanacimiento;
+		this.genero = genero;
+		this.nombre = nombre;
+		this.peso = peso;
+		this.telefono = telefono;
+	}
+	
+	
+
 
 }
