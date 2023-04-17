@@ -13,7 +13,7 @@ public class Conexion<T> {
 
 	public static EntityManager getEm() {
 		if (em == null) {
-			EntityManagerFactory emf = Persistence.createEntityManagerFactory("universidadweb2");
+			EntityManagerFactory emf = Persistence.createEntityManagerFactory("PrimerPrevio");
 			em = emf.createEntityManager();
 		}
 		return em;
