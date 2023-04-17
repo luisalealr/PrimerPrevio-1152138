@@ -30,9 +30,9 @@
 			<th>Direccion</th>
 			<th>Peso</th>
 			<th>Estatura</th>
-			
+
 		</tr>
-		<c:forEach var="listPacientes" items="${listPacientes}">
+		<c:forEach var="paciente" items="${listPacientes}">
 			<tr>
 				<td><c:out value="${paciente.id}" /></td>
 				<td><c:out value="${paciente.documento}" /></td>
